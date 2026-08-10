@@ -350,24 +350,28 @@ p{ margin:0 0 1em; color:var(--text-muted); }
 /* =========================================================
    REFERANSLAR (BANNER)
    ========================================================= */
-.references{ padding:5rem 0 4rem; }
-.references .container{ text-align:left; margin-bottom:2rem; }
+.references{ padding:4rem 0 4.5rem; background:var(--bg); }
+.references .container{ text-align:left; margin-bottom:2.2rem; }
 
 .ref-banner{
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
   background:var(--white);
   overflow:hidden;
-  padding:2rem 0;
+  padding:2.6rem 0;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 .ref-track{
   display:flex;
   align-items:center;
-  gap:4rem;
+  gap:3rem;
   width:max-content;
-  animation:scroll-refs 24s linear infinite;
+  /* Sağdan sola, aralıksız kayan şerit */
+  animation:scroll-refs 22s linear infinite;
+  will-change:transform;
 }
-.ref-banner:hover .ref-track{ animation-play-state:paused; }
+/* Not: Hover'da durdurmuyoruz, kesintisiz akış korunuyor. */
 @keyframes scroll-refs{
   from{ transform:translateX(0); }
   to{ transform:translateX(-50%); }
@@ -375,17 +379,33 @@ p{ margin:0 0 1em; color:var(--text-muted); }
 .ref-item{
   display:flex;
   align-items:center;
-  gap:.9rem;
+  gap:1rem;
   flex:none;
-  font-family:var(--font-mono);
-  font-weight:600;
-  font-size:1rem;
-  color:var(--navy-800);
-  letter-spacing:.01em;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.1rem 1.8rem;
+  box-shadow:0 6px 18px rgba(15,38,56,.06);
 }
 .ref-item img{
-  height:34px;
+  height:64px;
   width:auto;
+  max-width:220px;
+  object-fit:contain;
+}
+.ref-item span{
+  font-family:var(--font-mono);
+  font-weight:600;
+  font-size:.92rem;
+  color:var(--navy-800);
+  letter-spacing:.01em;
+  white-space:nowrap;
+  opacity:.85;
+}
+
+@media (max-width: 640px){
+  .ref-item{ padding:.9rem 1.3rem; gap:.8rem; }
+  .ref-item img{ height:46px; }
 }
 
 /* =========================================================
