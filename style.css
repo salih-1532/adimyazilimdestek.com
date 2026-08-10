@@ -357,60 +357,72 @@ p{ margin:0 0 1em; color:var(--text-muted); }
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
   background:var(--white);
-  overflow:hidden;
-  padding:2.6rem 0;
-  -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-          mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  padding:2.6rem 1.5rem;
 }
+
+/* Kayan şerit yapısı kaldırılıp esnek ve responsive Grid yapısına geçildi */
 .ref-track{
-  display:flex;
-  align-items:center;
-  gap:3rem;
-  width:max-content;
-  /* Sağdan sola kayma süresi 22s yerine 45s yapılarak yavaşlatıldı */
-  animation:scroll-refs 150s linear infinite;
-  will-change:transform;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
 }
 
-/* Kullanıcı fare ile üzerine geldiğinde (hover) akışı durdurur */
-.ref-banner:hover .ref-track{
-  animation-play-state: paused;
-}
-
-@keyframes scroll-refs{
-  from{ transform:translateX(0); }
-  to{ transform:translateX(-50%); }
-}
+/* Kutular kare forma getirildi ve içerikler merkeze hizalandı */
 .ref-item{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  flex:none;
-  background:var(--white);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:1.1rem 1.8rem;
-  box-shadow:0 6px 18px rgba(15,38,56,.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1; /* Tam kare görünüm sağlar */
+  text-align: center;
+  gap: 0.8rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(15,38,56,.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+/* Şık bir hover efekti (İsteğe bağlı) */
+.ref-item:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(15,38,56,.12);
+}
+
 .ref-item img{
-  height:64px;
-  width:auto;
-  max-width:220px;
-  object-fit:contain;
+  height: 48px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
+
 .ref-item span{
-  font-family:var(--font-mono);
-  font-weight:600;
-  font-size:.92rem;
-  color:var(--navy-800);
-  letter-spacing:.01em;
-  white-space:nowrap;
-  opacity:.85;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: .85rem;
+  color: var(--navy-800);
+  letter-spacing: .01em;
+  opacity: .85;
+  
+  /* Uzun isimlerin kare dışına taşmasını engeller */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 640px){
-  .ref-item{ padding:.9rem 1.3rem; gap:.8rem; }
-  .ref-item img{ height:46px; }
+  /* Mobilde kare boyutu hafifçe küçültülerek daha çok kutu sığdırılır */
+  .ref-track{
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 1rem;
+  }
+  .ref-item{ padding: .8rem; }
+  .ref-item img{ height: 38px; }
+  .ref-item span{ font-size: .78rem; }
 }
 
 /* =========================================================
