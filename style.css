@@ -367,11 +367,16 @@ p{ margin:0 0 1em; color:var(--text-muted); }
   align-items:center;
   gap:3rem;
   width:max-content;
-  /* Sağdan sola, aralıksız kayan şerit */
-  animation:scroll-refs 22s linear infinite;
+  /* Sağdan sola kayma süresi 22s yerine 45s yapılarak yavaşlatıldı */
+  animation:scroll-refs 45s linear infinite;
   will-change:transform;
 }
-/* Not: Hover'da durdurmuyoruz, kesintisiz akış korunuyor. */
+
+/* Kullanıcı fare ile üzerine geldiğinde (hover) akışı durdurur */
+.ref-banner:hover .ref-track{
+  animation-play-state: paused;
+}
+
 @keyframes scroll-refs{
   from{ transform:translateX(0); }
   to{ transform:translateX(-50%); }
