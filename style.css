@@ -368,7 +368,7 @@ p{ margin:0 0 1em; color:var(--text-muted); }
   gap:3rem;
   width:max-content;
   /* Sağdan sola kayma süresi 22s yerine 45s yapılarak yavaşlatıldı */
-  animation:scroll-refs 45s linear infinite;
+  animation:scroll-refs 150s linear infinite;
   will-change:transform;
 }
 
